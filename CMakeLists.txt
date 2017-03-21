@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required (VERSION 3.0)
 
 project (SIMDIntroDemo)
 
@@ -27,3 +27,7 @@ endif()
 add_executable (SIMDIntroDemo main.cpp ${HDRS})
 
 target_compile_definitions (SIMDIntroDemo PUBLIC ${DEFS})
+
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    target_compile_options (SIMDIntroDemo PUBLIC -mavx)
+endif()

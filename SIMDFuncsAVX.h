@@ -7,7 +7,7 @@ namespace avx
 
 void multiply(float* data, size_t size, float multiplier)
 {
-    // Broadcast multiplier to all 4 32 bit spaces in the 128 bit register.
+    // Broadcast multiplier to all 8 32 bit spaces in the 256 bit register.
     __m256 packedMultiplier = _mm256_set1_ps(multiplier);
     __m256 accum0;
 

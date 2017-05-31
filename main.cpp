@@ -42,6 +42,9 @@ int main(int argc, char** argv)
 
     #ifdef ENABLE_SSE
     benchmark_multiply(sse::multiply);
+    // Zero all SIMD registers to negate the AVX<->SSE transition penalty. See
+    // https://software.intel.com/en-us/articles/avoiding-avx-sse-transition-penalties
+    _mm256_zeroall();
     #endif
 
     #ifdef ENABLE_AVX

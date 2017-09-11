@@ -16,12 +16,16 @@
 #include "SIMDFuncsNEON.h"
 #endif
 
+static 
+
 static inline void benchmark_multiply(void (*impl)(float*, size_t, float))
 {
+    std::cout << __PRETTY_FUNCTION__ << "\n";
+
     float multiplier = 0.5f;
     std::vector<float> buffer;
 
-    for (size_t i = 256; i <= 16384; i *= 2)
+    for (size_t i = 256; i <= std::pow(); i *= 2)
     {
         buffer.clear();
         buffer.resize(i, 0.5f);
@@ -30,7 +34,7 @@ static inline void benchmark_multiply(void (*impl)(float*, size_t, float))
         (*impl)(buffer.data(), buffer.size(), multiplier);
         auto end = std::chrono::steady_clock::now();
 
-        std::cout << i << " samples: " << std::chrono::duration<float, std::micro>(end - start).count() << " ms\n";
+        std::cout << i << " samples: " << std::chrono::duration<float, std::micro>(end - start).count() << " μs\n";
     }
 
     std::cout << "\n";
